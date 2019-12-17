@@ -1,3 +1,44 @@
-<p>
-  login works!
-</p>
+<div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-3">
+      <form (submit)="submit()" #f="ngForm">
+        <div class="card">
+          <div class="card-header" data-background-color="purple">
+            <h4 class="text-center" i18n>Login</h4>
+          </div>
+          <div class="card-content">
+          </div>
+          <div class="container-fluid">
+            <p class="text-danger text-center" i18n>{{errorMessage}}</p>
+            <div class="form-group label-floating">
+              <label class="control-label" i18n>Email</label>
+              <input type="email" class="form-control" required name="username" [(ngModel)]="username" #us>
+              <span class="text-danger" *ngIf="us.errors !=null && us.touched" i18n>Email is not valid.</span>
+            </div>
+
+            <div class="form-group label-floating">
+              <label class="control-label" i18n>Password</label>
+              <input type="password" class="form-control" required required name="password" [(ngModel)]="password" #pswd>
+              <span class="text-danger" *ngIf="pswd.errors !=null && pswd.touched" i18n>Password is not valid.</span>
+            </div>
+
+            <div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" name="remember" [(ngModel)]="remember" i18n> Remember Me!
+                      <span class="form-check-sign">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+            </div>
+            <div class="text-danger text-center">{{errorMessage}}</div>
+            <div class="col-sm-12 text-center">
+              <button class="btn btn-primary" [disabled]="isLoading" i18n>{{isLoading ? '...' : 'Login'}}</button>
+              <br/>
+              <a [routerLink]="'../register'" class="btn btn-link text-info text-center" i18n>Register Now</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
