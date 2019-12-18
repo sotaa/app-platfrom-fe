@@ -8,7 +8,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser: IAuthResult;
+  private authResult: IAuthResult;
   constructor(private http: HttpClient) {}
 
   /**
@@ -19,7 +19,7 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http
       .post<IAuthResult>(environment.identityUrls.login, { username, password })
-      .pipe(tap(res => this.setCurrentUser(res)));
+      .pipe(tap(res => this.setAuthResult(res)));
   }
 
   /**
@@ -33,7 +33,7 @@ export class AuthService {
         username,
         password
       })
-      .pipe(tap(res => this.setCurrentUser(res)));
+      .pipe(tap(res => this.setAuthResult(res)));
   }
 
   logout() {
@@ -42,25 +42,26 @@ export class AuthService {
 
   getCurrentUser(): IAuthResult {
     const localUserStr =
-      this.currentUser ||
-      sessionStorage.getItem('currentUser') ||
-      sessionStorage.getItem('currentUser');
+      this.authResult ||
+      sessionStorage.getItem('authResult') ||
+      sessionStorage.getItem('authResult');
+
     if (!localUserStr) {
       return null;
     }
 
     if (typeof localUserStr === 'string') {
-      this.currentUser = JSON.parse(localUserStr);
+      this.authResult = JSON.parse(localUserStr);
     }
-    return this.currentUser;
+    return this.authResult.user;
   }
 
-  setCurrentUser(user: IAuthResult) {
-    this.currentUser = user;
-    sessionStorage.setItem('currentUser', JSON.stringify(user));
+  private setAuthResult(user: IAuthResult) {
+    this.authResult = user;
+    sessionStorage.setItem('authResult', JSON.stringify(user));
   }
 
   rememberCurrentUser() {
-    localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    localStorage.setItem('authResult', JSON.stringify(this.authResult));
   }
 }
