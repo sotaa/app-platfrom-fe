@@ -6,13 +6,15 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { AuthRoutingModule } from './auth-routing/auth-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AuthStartComponent } from './auth-start/auth-start.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, ResetPasswordComponent, AuthStartComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class AuthModule { }
