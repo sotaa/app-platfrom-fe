@@ -1,8 +1,21 @@
 {
-  "Login": "ddgin",
+  "Login": "Login",
   "Register": "Register",
   "Email": "Email",
   "Password": "Password",
-  "Remember Me": "Remember Me"
-
+  "Remember Me!": "Remember Me!",
+  "Email is not valid.": "Email is not valid.",
+  "Password is not valid.": "Password is not valid.",
+  "Register Now": "Register Now",
+  "authErrors": {
+    "USER_NOT_FOUND": "Email doesn't exists.",
+    "INVALID_USERNAME": "Email is not valid.",
+    "WRONG_PASSWORD": "Password is wrong.",
+    "TOKEN_EXPIRED": "Token is expired.",
+    "INVALID_TOKEN": "Token is not valid.",
+    "INVALID_PASSWORD": "Password is not valid",
+    "DUPLICATE_USERNAME": "Email is already exists",
+    "VALIDATION_ERROR": "Validation error accord.",
+    "UNKNOWN_ERROR": "Hmmm, it seems something went wrong, don't worry we will take of it."
+  }
 }

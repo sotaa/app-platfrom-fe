@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { catchError, tap } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -15,45 +16,32 @@ export class LoginComponent {
   password: string;
   remember: boolean;
   isLoading: boolean;
-  authService: any;
   errorMessage: string;
 
-  constructor( private router: Router) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   submit() {
     if (this.form.valid) {
       this.isLoading = true;
       this.authService
         .login(this.username, this.password)
+        .pipe(finalize(() => this.isLoading = false))
         .subscribe(
           res => {
-            // check user is exists.
-            if (res) {
-              // make user remember.
-              if (this.remember) {
-                this.authService.makeUserRemembered(res);
-              }
-
-              // make user logged in.
-              this.authService.setCurrentUser(res);
-
-              if (res.schoolId) {
-                // create redirect url based on user role.
-                this.router.navigate(['school', res.schoolId]);
-              } else {
-              // navigate to dashboard.
-              this.router.navigate(['']);
-              }
-            } else {
-              this.errorMessage = 'نام کاربری یا کلمه عبور اشتباه است';
+            // make user remember.
+            if (this.remember) {
+              this.authService.rememberCurrentUser();
             }
+
+            // navigate to dashboard.
+            this.router.navigate(['']);
           },
-          e => {
-            this.errorMessage = e.error;
-          }, () => this.isLoading = false
+          errorResponse => {
+            this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
+          }
         );
     } else {
-      this.errorMessage = 'لطفا موارد خواسته شده را کامل کنید';
+      this.errorMessage = 'VALIDATION_ERROR';
     }
   }
 }

@@ -2,7 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const IDENTITY_SERVER_URL = 'http://localhost:3000';
+
 export const environment = {
   production: false,
-
+  identityUrls: {
+    login: IDENTITY_SERVER_URL.concat('/auth/login'),
+    register: IDENTITY_SERVER_URL.concat('/auth/register'),
+    resetPassword: IDENTITY_SERVER_URL.concat('/auth/reset-password'),
+  }
 };
