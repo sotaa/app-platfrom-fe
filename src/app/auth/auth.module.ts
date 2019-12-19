@@ -4,16 +4,18 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthRoutingModule } from './auth-routing/auth-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthStartComponent } from './auth-start/auth-start.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { PoliciesComponent } from './policies/policies.component';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, ResetPasswordComponent, AuthStartComponent],
+  declarations: [RegisterComponent, LoginComponent, ResetPasswordComponent, AuthStartComponent, PoliciesComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule
   ]
 })

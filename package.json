@@ -10,7 +10,8 @@
     "e2e": "ng e2e"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "rangeEnd": 120
   },
   "private": true,
   "dependencies": {

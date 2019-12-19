@@ -1,12 +1,16 @@
 {
   "Login": "Login",
+  "Already have an account?": "Already have an account? Click Here",
   "Register": "Register",
   "Email": "Email",
   "Password": "Password",
-  "Remember Me!": "Remember Me!",
+  "Remember Me": "Remember Me",
   "Email is not valid.": "Email is not valid.",
-  "Password is not valid.": "Password is not valid.",
+  "Password is not valid.": "Password is not valid. it should be more than 6 characters.",
   "Register Now": "Register Now",
+  "polices": "polices",
+  "I agree with the ": "I agree with the ",
+  "Please agree with the policies.": "Please agree with the policies.",
   "authErrors": {
     "USER_NOT_FOUND": "Email doesn't exists.",
     "INVALID_USERNAME": "Email is not valid.",
