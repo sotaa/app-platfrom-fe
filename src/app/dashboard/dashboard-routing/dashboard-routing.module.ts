@@ -5,7 +5,7 @@ import { LayoutComponent } from '../layout/layout.component';
 
 const routes: Routes = [
   {path: '', component: LayoutComponent, children: [
-
+    // Load children modules here application.
   ]}
 ];
 
@@ -15,6 +15,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class DashboardRoutingModule { }

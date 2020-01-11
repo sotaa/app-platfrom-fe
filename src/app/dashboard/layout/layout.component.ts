@@ -3,12 +3,12 @@ import {
   Location,
   PopStateEvent
 } from '@angular/common';
-import 'rxjs/add/operator/filter';
 import { NavbarComponent } from './navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 import PerfectScrollbar from 'perfect-scrollbar';
 import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
