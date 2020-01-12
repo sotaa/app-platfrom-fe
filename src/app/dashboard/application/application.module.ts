@@ -5,7 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: ListApplicationComponent},
-  {pathMatch: 'add-or-update', component: AddOrUpdateApplicationComponent}
+  {pathMatch: 'add', component: AddOrUpdateApplicationComponent},
+  {pathMatch: 'update/:id', component: AddOrUpdateApplicationComponent},
 ];
 
 @NgModule({

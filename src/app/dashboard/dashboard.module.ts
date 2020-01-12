@@ -5,10 +5,9 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { DashboardRoutingModule } from './dashboard-routing/dashboard-routing.module';
-import { AddOrUpdateApplicationComponent } from './application/add-or-update-application/add-or-update-application.component';
 
 @NgModule({
-  declarations: [LayoutComponent, SidebarComponent, FooterComponent, NavbarComponent, AddOrUpdateApplicationComponent],
+  declarations: [LayoutComponent, SidebarComponent, FooterComponent, NavbarComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule
