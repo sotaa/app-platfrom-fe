@@ -1,12 +1,12 @@
 
   <div class="card card-pricing ">
-    <!-- <h6 class="card-category"> Small Company</h6> -->
+    <h6 class="card-category"> {{plan.name}}</h6>
     <div class="card-body">
       <div class="card-icon icon-rose ">
-        <i class="material-icons">{{plan.icon}}</i>
+        <i class="material-icons">{{plan.icon || 'weekend'}}</i>
       </div>
-      <h3 class="card-title">{{plan.title}}</h3>
-      <p class="card-description">{{plan.decription}}</p>
+      <h3 class="card-title">{{plan.price}} {{'paymentPlans.unit' | translate}}</h3>
+      <p class="card-description">{{plan.description}}</p>
     </div>
     <div class="card-footer justify-content-center ">
       <a (click)="buy()" class="btn btn-round btn-rose">{{'Choose Plan' | translate}}</a>

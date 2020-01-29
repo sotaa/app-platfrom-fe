@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-add-modify',
+  selector: 'plan-add-modify',
   templateUrl: './add-modify.component.html',
   styleUrls: ['./add-modify.component.scss']
 })

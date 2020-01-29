@@ -3,7 +3,7 @@ import { IPaymentPlan } from '../models';
 import { PaymentPlansService } from '../payment-plans.service';
 
 @Component({
-  selector: 'app-single',
+  selector: 'plan-single',
   templateUrl: './single.component.html',
   styleUrls: ['./single.component.scss']
 })
