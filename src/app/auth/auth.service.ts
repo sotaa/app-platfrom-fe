@@ -3,6 +3,8 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IAuthResult } from './models';
 import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { intersection } from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -40,20 +42,25 @@ export class AuthService {
     localStorage.clear();
   }
 
-  getCurrentUser(): IAuthResult {
-    const localUserStr =
+  getCurrentUser(): Observable<IAuthResult> {
+   
+    return new Observable(observer => { const localUserStr =
       this.authResult ||
       sessionStorage.getItem('authResult') ||
       sessionStorage.getItem('authResult');
 
     if (!localUserStr) {
-      return null;
+       observer.next(null);
+       return;
     }
 
     if (typeof localUserStr === 'string') {
       this.authResult = JSON.parse(localUserStr);
     }
-    return this.authResult.user;
+
+     observer.next(this.authResult.user);
+    }) 
+      
   }
 
   private setAuthResult(user: IAuthResult) {
@@ -63,5 +70,23 @@ export class AuthService {
 
   rememberCurrentUser() {
     localStorage.setItem('authResult', JSON.stringify(this.authResult));
+  }
+
+  hasPermission(requiredPermissions: string[]): boolean{
+    if (!this.authResult) {
+     return false;
+    }
+
+    if (!requiredPermissions || !requiredPermissions.length) return true;
+
+    /** برای این که ببینیم کاربر همه دسترسی ها رو داره مشترکات بین دسترسی های لازم
+     * و دسترسی های کاربر رو بدست میاریم اگر مشترکات با دسترسی های لازم برابر بود
+     * پس کاربر همه دسترسی های لازم رو داره
+     */
+    const userPermissions = this.authResult.user.role.permissions;
+
+    if (requiredPermissions.length > userPermissions.length) return false;
+
+    return intersection(userPermissions, requiredPermissions).length === requiredPermissions.length;
   }
 }

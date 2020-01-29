@@ -1,0 +1,30 @@
+<div class="page-header pricing-page header-filter" style="background-image: url('../../assets/img/bg-pricing.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 ml-auto mr-auto text-center">
+        <h2 class="title">Pick the best plan for you</h2>
+        <h5 class="description">You have Free Unlimited Updates and Premium Support on each package.</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-6" *ngFor="let plan of plans">
+          <plan-single [plan]="plan"></plan-single>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div class="card card-pricing card-plain">
+  <h6 class="card-category"> Freelancer</h6>
+  <div class="card-body">
+    <div class="card-icon icon-white ">
+      <i class="material-icons">weekend</i>
+    </div>
+    <h3 class="card-title">Free</h3>
+    <p class="card-description">This is good if your company size is between 2 and 10 Persons.</p>
+  </div>
+  <div class="card-footer justify-content-center ">
+    <a href="#pablo" class="btn btn-round btn-white">Choose Plan</a>
+  </div>
+</div> -->

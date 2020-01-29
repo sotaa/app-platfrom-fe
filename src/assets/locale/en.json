@@ -11,6 +11,10 @@
   "polices": "polices",
   "I agree with the ": "I agree with the ",
   "Please agree with the policies.": "Please agree with the policies.",
+  "Choose Plan": "Choose Plan",
+  "paymentPlans": {
+    "unit": "Toman"
+  },
   "authErrors": {
     "USER_NOT_FOUND": "Email doesn't exists.",
     "INVALID_USERNAME": "Email is not valid.",
