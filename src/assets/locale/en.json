@@ -21,5 +21,8 @@
     "DUPLICATE_USERNAME": "Email is already exists",
     "VALIDATION_ERROR": "Validation error accord.",
     "UNKNOWN_ERROR": "Hmmm, it seems something went wrong, don't worry we will take of it."
+  },
+  "application": {
+    "open": "open"
   }
 }

@@ -1,3 +1,37 @@
-<p>
-  list-application works!
-</p>
+<div class="row">
+  <div class="col-md-4" *ngFor="let app of applications | async">
+    <div class="card">
+        <div class="card-header card-header-image">
+          <a href="{{app.url}}">
+            <img class="img" src="{{app.picture}}" />
+          </a>
+        </div>
+        <div class="card-body">
+          {{app.description | translate}}
+        </div>
+        <div class="card-footer" *ngIf="'hasPermission'">
+          <div class="stats">
+            <a class="btn btn-primary btn-sm" href="{{app.url}}">{{'application.open' | translate}}</a>
+          </div>
+              <div class="stats">
+                <button mat-raised-button class="btn btn-link btn-info">
+                  <i class="material-icons">edit</i>
+                </button>
+                <button mat-raised-button class="btn btn-danger btn-link">
+                  <i class="material-icons">delete</i>
+                </button>
+              </div>
+          </div>
+        </div>
+    </div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-header">
+      TODO:
+    </div>
+    <div class="card-body">
+      show new application button here if user has permission
+    </div>
+</div>
+</div>

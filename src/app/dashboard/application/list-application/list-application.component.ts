@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IApplication } from '../models';
+import { ApplicationService } from '../application.service';
 
 @Component({
   selector: 'app-list-application',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListApplicationComponent implements OnInit {
 
-  constructor() { }
+  applications: Observable<IApplication[]>;
+
+  constructor(private appService: ApplicationService) { }
 
   ngOnInit() {
+    this.applications = this.appService.getApplications();
   }
 
 }
