@@ -10,5 +10,7 @@ export const environment = {
     login: IDENTITY_SERVER_URL.concat('/auth/login'),
     register: IDENTITY_SERVER_URL.concat('/auth/register'),
     resetPassword: IDENTITY_SERVER_URL.concat('/auth/reset-password'),
-  }
+  },
+  authenticationPageUrl: '/auth',
+  permissionDeniedPageUrl: '/auth'
 };

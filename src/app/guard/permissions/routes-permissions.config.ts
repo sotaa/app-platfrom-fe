@@ -15,7 +15,7 @@ import {
 } from './permissions.const';
 
 export const RoutePermissions: {path: string, claims: string[]}[] = [
-  { path: '/payment-plans', claims: [PAYMENT_PLAN_READ] },
-  { path: '/payment-plans/create', claims: [PAYMENT_PLAN_CREATE] },
-  { path: '/payment-plans/edit',  claims: [PAYMENT_PLAN_EDIT] },
+  { path: 'payment-plans', claims: [PAYMENT_PLAN_READ+'sasdad'] },
+  { path: 'payment-plans/create', claims: [PAYMENT_PLAN_CREATE] },
+  { path: 'payment-plans/edit',  claims: [PAYMENT_PLAN_EDIT] },
 ];
