@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { RoutePermissions } from './permissions';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,6 @@ export class HasPermissionGuard implements CanActivateChild, CanActivate {
 
     if(!config) return true;
     
-    return this.authService.hasPermission(config.claims) || this.router.parseUrl(environment.permissionDeniedPageUrl);
+    return this.authService.hasPermission(config.claims).pipe(map(hasPermission => hasPermission ? true : this.router.parseUrl(environment.permissionDeniedPageUrl))) ;
   }
 }
