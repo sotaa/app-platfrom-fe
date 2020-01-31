@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PoliciesComponent } from './policies/policies.component';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './reducers';
+import { AuthHttpClient } from './auth-http-client.service';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, ResetPasswordComponent, AuthStartComponent, PoliciesComponent],
@@ -22,6 +23,7 @@ import { authReducer } from './reducers';
     StoreModule.forRoot({
       authState: authReducer
     })
-  ]
+  ],
+  exports: [AuthHttpClient]
 })
 export class AuthModule { }
