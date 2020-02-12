@@ -59,7 +59,7 @@ export class AuthService {
   }
 
   // getCurrentUser(): Observable<IAuthResult> {
-  //   return new Observable(observer => { 
+  //   return new Observable(observer => {
   //     const localUserStr = this.authResult ||
   //     sessionStorage.getItem('authResult') ||
   //     sessionStorage.getItem('authResult');
@@ -78,7 +78,7 @@ export class AuthService {
   // }
 
   getCurrentUser() {
-    return this.authStore.select('authResult');
+    return this.authStore.select((a: any) => a.authState.authResult);
   }
 
   private setAuthResult(user: IAuthResult) {
