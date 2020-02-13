@@ -11,14 +11,14 @@ import { Observable } from 'rxjs';
 import { RoutePermissions } from './permissions';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs/operators';
+import { map,take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HasPermissionGuard implements CanActivateChild, CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
-  
+
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     return this.canActivateChild(next, state)
   }
@@ -28,7 +28,7 @@ export class HasPermissionGuard implements CanActivateChild, CanActivate {
     const config = RoutePermissions.find(item => item.path === next.url.toString());
 
     if(!config) return true;
-    
-    return this.authService.hasPermission(config.claims).pipe(map(hasPermission => hasPermission ? true : this.router.parseUrl(environment.permissionDeniedPageUrl))) ;
+
+    return this.authService.hasPermission(config.claims).pipe(take(1),map(hasPermission => hasPermission ? true : this.router.parseUrl(environment.permissionDeniedPageUrl))) ;
   }
 }
