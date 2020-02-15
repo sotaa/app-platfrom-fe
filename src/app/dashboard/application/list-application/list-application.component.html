@@ -2,7 +2,7 @@
   <div class="col-md-4" *ngFor="let app of applications | async">
     <div class="card">
         <div class="card-header card-header-image">
-          <a href="{{app.url}}">
+          <a  [href]=" hasReadAppPermission ? app.url : ''">
             <img class="img" src="{{app.picture}}" />
           </a>
         </div>
@@ -10,14 +10,14 @@
           {{app.description | translate}}
         </div>
         <div class="card-footer" *ngIf="'hasPermission'">
-          <div class="stats">
+          <div *ngIf="hasReadAppPermission" class="stats">
             <a class="btn btn-primary btn-sm" href="{{app.url}}">{{'application.open' | translate}}</a>
           </div>
               <div class="stats">
-                <button mat-raised-button class="btn btn-link btn-info">
+                <button *ngIf="hasEditAppPermission" mat-raised-button class="btn btn-link btn-info">
                   <i class="material-icons">edit</i>
                 </button>
-                <button mat-raised-button class="btn btn-danger btn-link">
+                <button *ngIf="hasDeleteAppPermission" mat-raised-button class="btn btn-danger btn-link">
                   <i class="material-icons">delete</i>
                 </button>
               </div>
@@ -25,13 +25,16 @@
         </div>
     </div>
 
-<div class="col-md-4">
+<div *ngIf="hasCreatAppPermission" class="col-md-4">
   <div class="card">
-    <div class="card-header">
-      TODO:
-    </div>
-    <div class="card-body">
-      show new application button here if user has permission
-    </div>
-</div>
+    <i
+    *ngIf="!appFormUP"
+    class="material-icons"
+    style="font-size: 190px; margin: 70px auto; color:darkgreen;cursor: pointer;"
+    (click)="createAppFormUP()"
+    >
+      add
+    </i>
+    <app-add-or-update-application *ngIf="appFormUP" (closeAppForm)="closeAppForm()"></app-add-or-update-application>
+  </div>
 </div>
