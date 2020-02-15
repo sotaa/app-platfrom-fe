@@ -27,6 +27,11 @@
     "UNKNOWN_ERROR": "Hmmm, it seems something went wrong, don't worry we will take of it."
   },
   "application": {
-    "open": "open"
+    "Application": "Application",
+    "open": "open",
+    "Name": "Name",
+    "Address": "Address",
+    "Active": "Active",
+    "Save": "Save"
   }
 }
