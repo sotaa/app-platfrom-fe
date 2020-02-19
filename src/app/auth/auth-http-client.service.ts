@@ -9,9 +9,9 @@ export class AuthHttpClient {
   private requestOptions: { headers?: { Authorization: string } };
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    this.requestOptions = {};
-    authService.getCurrentUser().subscribe(authResult => {
-      this.requestOptions.headers.Authorization = `Bearer ${authResult.token}`;
+    this.requestOptions = {headers:{Authorization:''}};
+    this.authService.getCurrentUser().subscribe( authResult =>{
+      this.requestOptions.headers.Authorization = `Bearer ${ authResult.token }`;
     });
   }
 
