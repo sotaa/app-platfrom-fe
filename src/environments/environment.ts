@@ -9,7 +9,11 @@ export const environment = {
   identityUrls: {
     login: IDENTITY_SERVER_URL.concat('/auth/login'),
     register: IDENTITY_SERVER_URL.concat('/auth/register'),
-    resetPassword: IDENTITY_SERVER_URL.concat('/auth/reset-password'),
+    resetPassword: IDENTITY_SERVER_URL.concat( '/auth/reset-password' ),
+    createApplication:IDENTITY_SERVER_URL.concat('/applications'),
+    readApplications:IDENTITY_SERVER_URL.concat('/applications'),
+    readApplication:IDENTITY_SERVER_URL.concat('/applications/'),
+    deleteApplication:IDENTITY_SERVER_URL.concat('/applications/'),
   },
   authenticationPageUrl: '/auth',
   permissionDeniedPageUrl: '/auth'
