@@ -18,15 +18,54 @@ export class ListApplicationComponent implements OnInit
   hasEditAppPermission: boolean;
   hasDeleteAppPermission: boolean;
 
-  applications: Observable<IApplication[]>;
+  applications: IApplication[];
+  fetchedApp: IApplication;
+  editMode: boolean = false;
 
   constructor( private appService: ApplicationService, private authService: AuthService ) { }
 
   ngOnInit(){
     this.checkPermissions();
-    this.applications = this.appService.getApplications();
+    this.getApplications();
   }
 
+  getApplications()
+  {
+    this.appService.getApplications().subscribe( res =>  this.applications = res,
+    errorResponse =>
+    {
+      // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
+    });
+  }
+  reFetchApps(){
+    this.getApplications();
+    this.closeAppForm();
+  }
+  deleteApp( id )
+  {
+    this.appService.deleteApplication( id )
+      .subscribe( res =>{
+        this.applications = this.applications.filter( f => f.id !== id )
+      },
+    errorResponse =>
+    {
+      // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
+    });
+  }
+  fetchAppForEditApp( id ){
+    this.closeAppForm();
+    this.appService.getApplication( id ).subscribe( res =>{
+      this.fetchedApp = res;
+      this.editMode = true;
+      this.createAppFormUP();
+    },
+    errorResponse =>{
+      // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
+      } );
+
+  }
+
+  // check if user have required permission
   checkPermissions(){
     this.checkCreatAppPermision();
     this.checkEditAppPermision();
@@ -70,5 +109,6 @@ export class ListApplicationComponent implements OnInit
   }
   closeAppForm(){
     this.appFormUP = false;
+    this.editMode = false;
   }
 }
