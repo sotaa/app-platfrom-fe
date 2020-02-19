@@ -1,40 +1,61 @@
 <div class="row">
-  <div class="col-md-4" *ngFor="let app of applications | async">
+  <div class="col-md-4" *ngFor="let app of applications">
     <div class="card">
-        <div class="card-header card-header-image">
-          <a  [href]=" hasReadAppPermission ? app.url : ''">
+      <div class="card-body mb-4">
+        <a class="text-center" style="color:inherit" [href]=" hasReadAppPermission ? app.url : ''" target="_blank">
+        <!-- <div class="card-header card-header-image">
+
             <img class="img" src="{{app.picture}}" />
           </a>
-        </div>
-        <div class="card-body">
+        </div> -->
+          <div class="stats title font-weight-bold h3" >
+          <!-- <a  [href]=" hasReadAppPermission ? app.url : ''"> -->
+            <b>{{app.name}}</b>
+          <!-- </a> -->
+
+          </div>
+          <div class=" mt-5 mb-5">
+            <!-- <i class=" material-icons" style="font-size: 50px; color:rgb(32, 124, 167)">  school</i>-->
+              <img  style="width:45px;height:45px" src=".../../../../../../assets/img/application-icon.png" />
+          </div>
+        <!-- <div class="card-body">
           {{app.description | translate}}
-        </div>
-        <div class="card-footer" *ngIf="'hasPermission'">
-          <div *ngIf="hasReadAppPermission" class="stats">
-            <a class="btn btn-primary btn-sm" href="{{app.url}}">{{'application.open' | translate}}</a>
+        </div> -->
+        </a>
+      </div>
+      <div class="card-footer" *ngIf="'hasPermission'">
+        <!-- <div *ngIf="hasReadAppPermission" class="stats">
+          <a class="btn btn-primary btn-sm" href="{{app.url}}">{{'application.open' | translate}}</a>
+        </div> -->
+        <div class="stats mx-auto">
+          <button *ngIf="hasEditAppPermission" (click)="fetchAppForEditApp(app.id)" mat-raised-button class="btn btn-link btn-info">
+                <i class="material-icons">edit</i>
+          </button>
+          <button *ngIf="hasDeleteAppPermission" (click)="deleteApp(app.id)" mat-raised-button class="btn btn-danger btn-link">
+                <i class="material-icons">delete</i>
+          </button>
           </div>
-              <div class="stats">
-                <button *ngIf="hasEditAppPermission" mat-raised-button class="btn btn-link btn-info">
-                  <i class="material-icons">edit</i>
-                </button>
-                <button *ngIf="hasDeleteAppPermission" mat-raised-button class="btn btn-danger btn-link">
-                  <i class="material-icons">delete</i>
-                </button>
-              </div>
-          </div>
-        </div>
+      </div>
     </div>
+  </div>
 
 <div *ngIf="hasCreatAppPermission" class="col-md-4">
   <div class="card">
     <i
     *ngIf="!appFormUP"
     class="material-icons"
-    style="font-size: 190px; margin: 70px auto; color:darkgreen;cursor: pointer;"
+    style="font-size: 190px; margin: 73px auto; color:darkslategrey; cursor: pointer;"
     (click)="createAppFormUP()"
     >
       add
     </i>
-    <app-add-or-update-application *ngIf="appFormUP" (closeAppForm)="closeAppForm()"></app-add-or-update-application>
+    <app-add-or-update-application
+    *ngIf="appFormUP"
+    [fetchedApp]="fetchedApp"
+    [editMode]="editMode"
+    (closeAppForm)="closeAppForm()"
+    (reFetchApplications)="reFetchApps()"
+    >
+    </app-add-or-update-application>
   </div>
 </div>
