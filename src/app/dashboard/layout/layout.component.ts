@@ -1,8 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import {
-  Location,
-  PopStateEvent
-} from '@angular/common';
+import { Location, PopStateEvent } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -24,15 +21,15 @@ export class LayoutComponent implements OnInit , AfterViewInit{
   ngOnInit() {
       const isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
-      if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
-          // if we are on windows OS we activate the perfectScrollbar function
+      // if (isWindows && !document.getElementsByTagName('body')[0].classList.contains('sidebar-mini')) {
+      //     // if we are on windows OS we activate the perfectScrollbar function
 
-          document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
-      } else {
-          document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
-      }
+      //     document.getElementsByTagName('body')[0].classList.add('perfect-scrollbar-on');
+      // } else {
+      //     document.getElementsByTagName('body')[0].classList.remove('perfect-scrollbar-off');
+      // }
       const elemMainPanel =  document.querySelector('.main-panel') as HTMLElement;
-      const elemSidebar =  document.querySelector('.sidebar .sidebar-wrapper') as HTMLElement;
+      // const elemSidebar =  document.querySelector('.sidebar .sidebar-wrapper') as HTMLElement;
 
       this.location.subscribe((ev: PopStateEvent) => {
           this.lastPoppedUrl = ev.url;
@@ -53,11 +50,11 @@ export class LayoutComponent implements OnInit , AfterViewInit{
       });
       this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
            elemMainPanel.scrollTop = 0;
-           elemSidebar.scrollTop = 0;
+          //  elemSidebar.scrollTop = 0;
       });
       if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
           let ps = new PerfectScrollbar(elemMainPanel);
-          ps = new PerfectScrollbar(elemSidebar);
+          // ps = new PerfectScrollbar(elemSidebar);
       }
   }
   ngAfterViewInit() {
