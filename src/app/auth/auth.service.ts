@@ -48,7 +48,8 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
+    // localStorage.clear();
+    sessionStorage.clear();
     return this.authStore.dispatch(new ChangeUser(undefined));
   }
 
