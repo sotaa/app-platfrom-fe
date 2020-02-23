@@ -12,6 +12,8 @@
   "I agree with the ": "I agree with the ",
   "Please agree with the policies.": "Please agree with the policies.",
   "Choose Plan": "Choose Plan",
+  "profile": "Profile",
+  "logout": "Logout",
   "paymentPlans": {
     "unit": "Toman"
   },
@@ -32,6 +34,10 @@
     "Name": "Name",
     "Address": "Address",
     "Active": "Active",
-    "Save": "Save"
+    "Save": "Save",
+    "cancel": "Cancel",
+    "Get Premium": "Get Premium",
+    "Your account has": "Your account has",
+    "remain": "left"
   }
 }
