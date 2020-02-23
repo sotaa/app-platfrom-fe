@@ -5,12 +5,14 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { DashboardRoutingModule } from './dashboard-routing/dashboard-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [LayoutComponent, SidebarComponent, FooterComponent, NavbarComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    TranslateModule
   ]
 })
 export class DashboardModule { }
