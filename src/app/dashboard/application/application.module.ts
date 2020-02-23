@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { AddOrUpdateApplicationComponent , ListApplicationComponent} from '.';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { PremiumCtaComponent } from './premium-cta/premium-cta.component';
+import { RemainingTimeComponent } from './remaining-time/remaining-time.component';
+import { ExpiredComponent } from './remaining-time/expired/expired.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', component: ListApplicationComponent},
@@ -14,7 +17,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AddOrUpdateApplicationComponent,
-    ListApplicationComponent
+    ListApplicationComponent,
+    PremiumCtaComponent,
+    RemainingTimeComponent,
+    ExpiredComponent
   ],
   imports: [
     CommonModule,
