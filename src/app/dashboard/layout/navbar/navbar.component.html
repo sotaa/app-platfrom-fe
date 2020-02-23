@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
-          <a class="navbar-brand" href="#">{{getTitle()}}</a>
+          <a class="navbar-brand" style="font-weight: bold;" [routerLink]="['/']">{{getTitle()}}</a>
         </div>
         <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
             <span class="sr-only">Toggle navigation</span>
@@ -11,23 +11,31 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/']">
                         <i class="material-icons">dashboard</i>
                         <p>
                             <span class="d-lg-none d-md-block">Stats</span>
                         </p>
                     </a>
-                </li>
+                </li> -->
 
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/profile']">
-                        <i class="material-icons">person</i>
-                        <p>
-                            <span class="d-lg-none d-md-block">Account</span>
-                        </p>
-                    </a>
-                </li>
+                <div class="dropdown">
+                  <button
+                  class="btn btn-secondary dropdown-toggle"
+                  style="background:none; box-shadow: none;"
+                  type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+                    <i class="material-icons">person</i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" [routerLink]="['/profile']">{{'profile' | translate}}</a>
+                    <a class="dropdown-item" (click)="logout()">{{'logout' | translate}}</a>
+                  </div>
+                </div>
+
             </ul>
         </div>
     </div>
