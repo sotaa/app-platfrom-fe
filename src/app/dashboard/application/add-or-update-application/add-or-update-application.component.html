@@ -25,18 +25,21 @@
                 </span>
             </label>
           </div>
-
           <br>
           <br>
           <br>
           <div class="col-sm-12 text-center">
             <button
-            class="btn btn-primary btn-sm"
+            class="btn btn-info btn-sm mr-2"
             [disabled]="isLoading" >
             {{isLoading ? '...' : 'application.Save' | translate}}
-          </button>
-            <br/>
-            <button class="btn btn-warning btn-sm" (click)="emitCloseAppForm()">{{'application.cancel' | translate}}</button>
+            </button>
+            <button
+            class="btn btn-danger btn-sm"
+            (click)="emitCloseAppForm()"
+            >
+            {{'application.cancel' | translate}}
+            </button>
           </div>
         </div>
       </div>
