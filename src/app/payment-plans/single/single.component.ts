@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IPaymentPlan } from '../models';
 import { PaymentPlansService } from '../payment-plans.service';
 
@@ -7,11 +7,23 @@ import { PaymentPlansService } from '../payment-plans.service';
   templateUrl: './single.component.html',
   styleUrls: ['./single.component.scss']
 })
-export class SingleComponent implements OnInit {
+export class SingleComponent implements OnInit
+{
+  @Output() deletePlan = new EventEmitter<boolean>();
+  @Output() editPlan = new EventEmitter<boolean>();
   @Input() plan: IPaymentPlan;
+  @Input() hasEditPlanPermission: boolean;
+  @Input() hasDeletePlanPermission: boolean;
   constructor(private service: PaymentPlansService) { }
 
-  ngOnInit() {
+  ngOnInit(){
+  }
+
+  deletePaymentPlan( id ){
+    this.deletePlan.emit( id );
+  }
+  editPaymentPlan( id ){
+    this.editPlan.emit( id );
   }
 
   buy() {
