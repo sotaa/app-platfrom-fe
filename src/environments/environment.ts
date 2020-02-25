@@ -14,6 +14,10 @@ export const environment = {
     readApplications:IDENTITY_SERVER_URL.concat('/applications'),
     readApplication:IDENTITY_SERVER_URL.concat('/applications/'),
     deleteApplication:IDENTITY_SERVER_URL.concat('/applications/'),
+    createPaymentPlan:IDENTITY_SERVER_URL.concat('/payment-plans'),
+    readPaymentPlans:IDENTITY_SERVER_URL.concat('/payment-plans'),
+    readPaymentPlan:IDENTITY_SERVER_URL.concat('/payment-plans/'),
+    deletePaymentPlan:IDENTITY_SERVER_URL.concat('/payment-plans/'),
   },
   authenticationPageUrl: '/auth',
   permissionDeniedPageUrl: '/auth'
