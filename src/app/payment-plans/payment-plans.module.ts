@@ -5,6 +5,7 @@ import { ListComponent } from './list/list.component';
 import { SingleComponent } from './single/single.component';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {path: '', component: ListComponent}
@@ -14,6 +15,7 @@ const routes: Routes = [
   declarations: [AddModifyComponent, ListComponent, SingleComponent],
   imports: [
     CommonModule,
+    FormsModule,
     TranslateModule,
     RouterModule.forChild(routes)
   ],
