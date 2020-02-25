@@ -14,8 +14,18 @@
   "Choose Plan": "Choose Plan",
   "profile": "Profile",
   "logout": "Logout",
+  "app": "App",
   "paymentPlans": {
-    "unit": "Toman"
+    "unit": "Toman",
+    "days": "Days",
+    "plan": "Plan",
+    "name": "Name",
+    "price": "Price",
+    "dateRange": "Date Range",
+    "isActive": "Active",
+    "description": "Description",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "authErrors": {
     "USER_NOT_FOUND": "Email doesn't exists.",
