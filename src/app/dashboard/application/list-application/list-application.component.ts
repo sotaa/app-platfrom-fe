@@ -41,20 +41,26 @@ export class ListApplicationComponent implements OnInit
     this.getApplications();
     this.closeAppForm();
   }
-  deleteApp( id )
-  {
-    this.appService.deleteApplication( id )
-      .subscribe( res =>{
+  deleteApp( id ){
+    this.checkDeleteAppPermision();
+    if ( this.hasDeleteAppPermission ){
+      if (confirm('Are you sure you want to delete?')) {
+        this.appService.deleteApplication( id ).subscribe( res =>{
         this.applications = this.applications.filter( f => f.id !== id )
-      },
-    errorResponse =>
-    {
-      // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
-    });
+        },
+        errorResponse =>{
+          // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
+        });
+      } }else{
+      alert( "You don't have DELETE Permission" )
+      }
+
   }
-  fetchAppForEditApp( id ){
-    this.closeAppForm();
-    this.appService.getApplication( id ).subscribe( res =>{
+  fetchAppForEditApp( id ) {
+    this.checkEditAppPermision();
+    if ( this.hasEditAppPermission ) {
+      this.closeAppForm();
+      this.appService.getApplication( id ).subscribe( res =>{
       this.fetchedApp = res;
       this.editMode = true;
       this.createAppFormUP();
@@ -62,6 +68,9 @@ export class ListApplicationComponent implements OnInit
     errorResponse =>{
       // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
       } );
+    } else{
+      alert( "You don't have EDIT Permission" );
+    }
 
   }
 
@@ -88,7 +97,7 @@ export class ListApplicationComponent implements OnInit
       return this.hasEditAppPermission = hasPermission
     })
   }
-  checkReadAppPermision(){
+  checkReadAppPermision() {
     const config = [];
     config.push( APPLICATION_READ );
      this.authService.hasPermission( config )
