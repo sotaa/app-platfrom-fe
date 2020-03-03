@@ -3,7 +3,7 @@
     <app-premium-cta></app-premium-cta>
   </div>
 </div>
-  <!-- <div class="row">
+<!-- <div class="row">
     <div class="col-md-6">
       <app-premium-cta></app-premium-cta>
     </div>
@@ -12,54 +12,88 @@
     </div>
   </div> -->
 
-<div class="row">
-  <div *ngIf="hasCreatAppPermission" class="col-md-4">
+<div
+  class="row"
+  *ngIf="!isLoading"
+>
+  <div
+    *ngIf="hasCreatAppPermission"
+    class="col-md-4"
+  >
     <div class="card">
       <i
-      *ngIf="!appFormUP"
-      class="material-icons"
-      style="font-size: 190px; margin: 71px auto; color:darkslategrey; cursor: pointer;"
-      (click)="createAppFormUP()"
+        *ngIf="!appFormUP"
+        class="material-icons"
+        style="font-size: 190px; margin: 71px auto; color:darkslategrey; cursor: pointer;"
+        (click)="createAppFormUP()"
       >
         add
       </i>
       <app-add-or-update-application
-      *ngIf="appFormUP"
-      [fetchedApp]="fetchedApp"
-      [editMode]="editMode"
-      (closeAppForm)="closeAppForm()"
-      (reFetchApplications)="reFetchApps()"
+        *ngIf="appFormUP"
+        [fetchedApp]="fetchedApp"
+        [editMode]="editMode"
+        (closeAppForm)="closeAppForm()"
+        (reFetchApplications)="reFetchApps()"
       >
       </app-add-or-update-application>
     </div>
   </div>
 
-  <div class="col-md-4" *ngFor="let app of applications">
+  <div
+    class="col-md-4"
+    *ngFor="let app of applications"
+  >
     <div class="card">
       <div class="card-body mb-4">
-        <a class="text-center" style="color:inherit" [href]=" hasReadAppPermission ? app.url : ''" target="_blank">
-          <div class="stats title font-weight-bold h3" >
+        <a
+          class="text-center"
+          style="color:inherit"
+          [href]=" hasReadAppPermission ? app.url : ''"
+          target="_blank"
+        >
+          <div class="stats title font-weight-bold h3">
             <b>{{app.name}}</b>
           </div>
           <div class=" mt-5 mb-3">
-              <img style="width:80px;height:80px" src=".../../../../../../assets/img/app3.png" />
+            <img
+              style="width:80px;height:80px"
+              src=".../../../../../../assets/img/app3.png"
+            />
           </div>
         </a>
       </div>
-      <div class="card-footer justify-content-center" >
-        <div *ngIf="hasEditAppPermission || hasDeleteAppPermission;else showBrand" class="stats">
-            <button  *ngIf="hasEditAppPermission" (click)="fetchAppForEditApp(app.id)" mat-raised-button class="btn btn-link btn-info">
-                <i class="material-icons">edit</i>
-            </button>
-            <button *ngIf="hasDeleteAppPermission" (click)="deleteApp(app.id)" mat-raised-button class="btn btn-danger btn-link">
-                <i class="material-icons">delete</i>
+      <div class="card-footer justify-content-center">
+        <div
+          *ngIf="hasEditAppPermission || hasDeleteAppPermission;else showBrand"
+          class="stats"
+        >
+          <button
+            *ngIf="hasEditAppPermission"
+            (click)="fetchAppForEditApp(app.id)"
+            mat-raised-button
+            class="btn btn-link btn-info"
+          >
+            <i class="material-icons">edit</i>
+          </button>
+          <button
+            *ngIf="hasDeleteAppPermission"
+            (click)="deleteApp(app.id)"
+            mat-raised-button
+            class="btn btn-danger btn-link"
+          >
+            <i class="material-icons">delete</i>
           </button>
         </div>
         <ng-template #showBrand><span class="btn btn-link btn-info">{{'app' | translate}}</span></ng-template>
       </div>
     </div>
   </div>
-
 </div>
 
-
+<div
+  class="d-flex justify-content-center mt-5 mb-5"
+  *ngIf="isLoading"
+>
+  <app-loading class="content-center mt-5 mb-5"></app-loading>
+</div>
