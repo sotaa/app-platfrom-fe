@@ -9,15 +9,19 @@ export const environment = {
   identityUrls: {
     login: IDENTITY_SERVER_URL.concat('/auth/login'),
     register: IDENTITY_SERVER_URL.concat('/auth/register'),
-    resetPassword: IDENTITY_SERVER_URL.concat( '/auth/reset-password' ),
-    createApplication:IDENTITY_SERVER_URL.concat('/applications'),
-    readApplications:IDENTITY_SERVER_URL.concat('/applications'),
-    readApplication:IDENTITY_SERVER_URL.concat('/applications/'),
-    deleteApplication:IDENTITY_SERVER_URL.concat('/applications/'),
-    createPaymentPlan:IDENTITY_SERVER_URL.concat('/payment-plans'),
-    readPaymentPlans:IDENTITY_SERVER_URL.concat('/payment-plans'),
-    readPaymentPlan:IDENTITY_SERVER_URL.concat('/payment-plans/'),
-    deletePaymentPlan:IDENTITY_SERVER_URL.concat('/payment-plans/'),
+    resetPassword: IDENTITY_SERVER_URL.concat('/auth/reset-password'),
+
+    createApplication: IDENTITY_SERVER_URL.concat('/applications'),
+    readApplications: IDENTITY_SERVER_URL.concat('/applications'),
+    readApplication: IDENTITY_SERVER_URL.concat('/applications/'),
+    deleteApplication: IDENTITY_SERVER_URL.concat('/applications/'),
+
+    createPaymentPlan: IDENTITY_SERVER_URL.concat('/payment-plans'),
+    readPaymentPlans: IDENTITY_SERVER_URL.concat('/payment-plans'),
+    readPaymentPlan: IDENTITY_SERVER_URL.concat('/payment-plans/'),
+    deletePaymentPlan: IDENTITY_SERVER_URL.concat('/payment-plans/'),
+
+    buyPlan: IDENTITY_SERVER_URL.concat('/payment/buy/')
   },
   authenticationPageUrl: '/auth',
   permissionDeniedPageUrl: '/auth'
