@@ -10,38 +10,37 @@ import { map } from 'rxjs/operators';
 })
 export class PaymentPlansService {
 
-  constructor(private authHttpClient:AuthHttpClient) { }
+  constructor(private authHttpClient: AuthHttpClient) { }
 
-  createPaymentPlan( data: IPaymentPlan ){
-    return this.authHttpClient.post<IPaymentPlan>(environment.identityUrls.createPaymentPlan,data).pipe(
+  createPaymentPlan(data: IPaymentPlan) {
+    return this.authHttpClient.post<IPaymentPlan>(environment.identityUrls.createPaymentPlan, data).pipe(
       map(res => res)
     );
   }
 
-  editPaymentPlan( data: IPaymentPlan, id ){
-    return this.authHttpClient.put<IPaymentPlan>(environment.identityUrls.createPaymentPlan + `/${id}`,data).pipe(
+  editPaymentPlan(data: IPaymentPlan, id) {
+    return this.authHttpClient.put<IPaymentPlan>(environment.identityUrls.createPaymentPlan + `/${id}`, data).pipe(
       map(res => res)
     );
   }
 
-  getPaymentPlans(){
+  getPaymentPlans() {
     return this.authHttpClient.get<IPaymentPlan[]>(environment.identityUrls.readPaymentPlans).pipe(
-      map( res => res)
+      map(res => res)
     );
   }
 
-  getPaymentPlan(id){
+  getPaymentPlan(id) {
     return this.authHttpClient.get<IPaymentPlan>(environment.identityUrls.readPaymentPlan.concat(id)).pipe(
-      map( res => res)
+      map(res => res)
     );
   }
 
-  deletePaymentPlan( id ){
-    return this.authHttpClient.delete(environment.identityUrls.deletePaymentPlan.concat(id)).pipe(map(res=>res))
+  deletePaymentPlan(id) {
+    return this.authHttpClient.delete(environment.identityUrls.deletePaymentPlan.concat(id)).pipe(map(res => res))
   }
 
-  buy(plan: IPaymentPlan) {
-    /** Mock observabel for testing */
-    return from(timer(1000));
+  buyPlan(id) {
+    return this.authHttpClient.get(environment.identityUrls.buyPlan.concat(id)).pipe(map(res => res))
   }
 }
