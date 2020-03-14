@@ -1,5 +1,4 @@
-
-<div class="pricing-page header-filter bg-info" >
+<div class="pricing-page header-filter bg-info">
   <div class="container">
     <div class="row">
       <div class="col-md-6 ml-auto mr-auto text-center">
@@ -9,35 +8,31 @@
     </div>
 
     <div class="row">
-      <div *ngIf="hasCreatePlanPermission" class="col-lg-3 col-md-6">
+      <div *ngIf="hasCreatePlanPermission"
+           class="col-lg-3 col-md-6">
         <div class="card">
-          <i
-          *ngIf="!planFormUP"
-          class="material-icons"
-          style="font-size: 130px; margin: 177px auto; color:darkslategrey; cursor: pointer;"
-          (click)="createPlanFormUP()"
-          >
+          <i *ngIf="!planFormUP"
+             class="material-icons"
+             style="font-size: 130px; margin: 177px auto; color:darkslategrey; cursor: pointer;"
+             (click)="openPlanForm()">
             add
           </i>
-          <plan-add-modify
-          *ngIf="planFormUP"
-          [fetchedPlan]="fetchedPlan"
-          [editMode]="editMode"
-          (closePlanForm)="closePlanForm()"
-          (reFetchApplications)="reFetchApps()"
-          >
+          <plan-add-modify *ngIf="planFormUP"
+                           [fetchedPlan]="fetchedPlan"
+                           [editMode]="editMode"
+                           (closePlanForm)="closePlanForm()"
+                           (reFetchApplications)="reFetchApps()">
           </plan-add-modify>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-6" *ngFor="let plan of plans">
-          <plan-single
-          (deletePlan)="deletePlan($event)"
-          (editPlan)="fetchAppForEdit($event)"
-          [plan]="plan"
-          [hasEditPlanPermission]="hasEditPlanPermission"
-          [hasDeletePlanPermission]="hasDeletePlanPermission"
-          >
+      <div class="col-lg-3 col-md-6"
+           *ngFor="let plan of plans">
+        <plan-single (deletePlan)="deletePlan($event)"
+                     (editPlan)="fetchAppForEdit($event)"
+                     [plan]="plan"
+                     [hasEditPlanPermission]="hasEditPlanPermission"
+                     [hasDeletePlanPermission]="hasDeletePlanPermission">
         </plan-single>
       </div>
     </div>
