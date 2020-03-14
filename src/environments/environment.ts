@@ -21,7 +21,12 @@ export const environment = {
     readPaymentPlan: IDENTITY_SERVER_URL.concat('/payment-plans/'),
     deletePaymentPlan: IDENTITY_SERVER_URL.concat('/payment-plans/'),
 
-    buyPlan: IDENTITY_SERVER_URL.concat('/payment/buy/')
+    buyPlan: IDENTITY_SERVER_URL.concat('/payment/buy/'),
+
+    createRole: IDENTITY_SERVER_URL.concat('/roles'),
+    readRoles: IDENTITY_SERVER_URL.concat('/roles'),
+    readRole: IDENTITY_SERVER_URL.concat('/roles/'),
+    deleteRole: IDENTITY_SERVER_URL.concat('/roles/'),
   },
   authenticationPageUrl: '/auth',
   permissionDeniedPageUrl: '/auth'
