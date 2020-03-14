@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PremiumCtaComponent } from './premium-cta/premium-cta.component';
 import { RemainingTimeComponent } from './remaining-time/remaining-time.component';
 import { ExpiredComponent } from './remaining-time/expired/expired.component';
-import { LoadingComponent } from '../../shared/loading/loading.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: ListApplicationComponent },
@@ -21,14 +21,14 @@ const routes: Routes = [
     ListApplicationComponent,
     PremiumCtaComponent,
     RemainingTimeComponent,
-    ExpiredComponent,
-    LoadingComponent
+    ExpiredComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule.forChild(routes),
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
   exports: [RouterModule]
 })
