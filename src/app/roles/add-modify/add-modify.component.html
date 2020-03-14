@@ -1,0 +1,49 @@
+<form (submit)="submit()"
+      #f="ngForm">
+  <div class="card">
+    <div class="card-header"
+         data-background-color="purple">
+      <h4 class="text-center font-weight-bold">{{'roles.role' | translate}}</h4>
+    </div>
+    <div class="card-content">
+    </div>
+    <div class="container-fluid">
+      <p *ngIf="errorMessage"
+         class="text-danger text-center">
+        {{ 'roles.' + errorMessage | translate}}
+      </p>
+      <div class="form-group label-floating">
+        <label class="control-label">{{'roles.title' | translate}}</label>
+        <input type="text"
+               class="form-control"
+               required
+               name="title"
+               [(ngModel)]="title">
+      </div>
+      <br>
+      <div class="form-group label-floating">
+        <label class="control-label">{{'roles.permission' | translate}}</label>
+        <br>
+        <br>
+        <ng-select2 class="ngselect2"
+                    [data]="fetchedPermissions"
+                    [options]="select2Options"
+                    name="permission"
+                    [(ngModel)]="permissions">
+        </ng-select2>
+      </div>
+      <br>
+      <br>
+      <div class="col-sm-12 text-center">
+        <button class="btn btn-info btn-sm mr-2"
+                [disabled]="isLoading">
+          {{isLoading ? '...' : 'roles.save' | translate}}
+        </button>
+        <button class="btn btn-danger btn-sm"
+                (click)="emitCloseRoleForm()">
+          {{'roles.cancel' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
