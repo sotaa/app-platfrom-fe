@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-body text-center mb-4">
+    <div class="stats title font-weight-bold "
+         style="font-size: calc(1em + 0.6vw)">
+      <b>{{role.title}}</b>
+    </div>
+    <div class=" mt-5 mb-3">
+      <img style="width:80px;height:80px"
+           src=".../../../../../assets/img/role.png" />
+    </div>
+  </div>
+  <div class="card-footer justify-content-center">
+    <div *ngIf="hasEditRolePermission || hasDeleteRolePermission;else showBrand"
+         class="stats">
+      <button *ngIf="hasEditRolePermission"
+              (click)="EmitEditRole(role.title)"
+              mat-raised-button
+              class="btn btn-link btn-info">
+        <i class="material-icons">edit</i>
+      </button>
+      <button *ngIf="hasDeleteRolePermission"
+              (click)="EmitDeleteRole(role.title)"
+              mat-raised-button
+              class="btn btn-danger btn-link">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
+    <ng-template #showBrand><span class="btn btn-link btn-info">{{'roles.role' | translate}}</span></ng-template>
+  </div>
+</div>
