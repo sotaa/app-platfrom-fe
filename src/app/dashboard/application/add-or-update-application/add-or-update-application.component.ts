@@ -31,43 +31,43 @@ export class AddOrUpdateApplicationComponent implements OnInit {
   @Input() editMode: boolean;
   errorMessage: string;
 
-  constructor( private applicationService: ApplicationService ){
+  constructor(private applicationService: ApplicationService) {
     this.application = new Application();
   }
 
-  ngOnInit(){
-    if (  this.editMode  ){
+  ngOnInit() {
+    if (this.editMode) {
       this.name = this.fetchedApp.name;
       this.address = this.fetchedApp.url;
       this.active = this.fetchedApp.isActive;
     }
   }
 
-  submit(){
+  submit() {
     this.fillApplicationDataForSendingToServer();
-    if ( this.form.valid ){
+    if (this.form.valid) {
       this.isLoading = true;
       let request = this.applicationService
-        .createApplication( this.application );
+        .createApplication(this.application);
 
-      if ( this.editMode ){
+      if (this.editMode) {
         request = this.applicationService
-          .editApplication( this.application, this.fetchedApp.id);
+          .editApplication(this.application, this.fetchedApp.id);
       }
-        request.pipe( finalize( () => this.isLoading = false ) ).subscribe( res =>{
-            alert( `application is ${this.editMode ? `updated`: `created`}`);
-            this.reFetchApplications.emit();
-          },
-          errorResponse => {
-            this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
-          }
-        );
-    } else{
+      request.pipe(finalize(() => this.isLoading = false)).subscribe(res => {
+        alert(`Application is ${this.editMode ? `updated` : `created`}`);
+        this.reFetchApplications.emit();
+      },
+        errorResponse => {
+          this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
+        }
+      );
+    } else {
       this.errorMessage = 'VALIDATION_ERROR';
     }
   }
 
-  fillApplicationDataForSendingToServer(){
+  fillApplicationDataForSendingToServer() {
     this.application.name = this.name;
     this.application.url = this.address;
     this.application.isActive = this.active
