@@ -1,0 +1,37 @@
+<div class="row"
+     *ngIf="!isLoading">
+
+  <div class="col-md-4"
+       *ngIf="hasCreatRolePermission">
+    <div class="card">
+      <i *ngIf="!roleFormUP"
+         class="material-icons"
+         style="font-size: 190px; margin: 71px auto; color:darkslategrey; cursor: pointer;"
+         (click)="openRoleForm()">
+        add
+      </i>
+      <app-add-modify *ngIf="roleFormUP"
+                      [fetchedRole]="fetchedRole"
+                      [editMode]="editMode"
+                      (closeRoleForm)="closeRoleForm()"
+                      (reFetchRoles)="reFetchRoles()">
+      </app-add-modify>
+    </div>
+  </div>
+
+  <div class="col-md-4"
+       *ngFor="let role of roles">
+    <role-single (deleteRole)="deleteRole($event)"
+                 (editRole)="fetchRoleForEditing($event)"
+                 [role]="role"
+                 [hasEditRolePermission]="hasEditRolePermission"
+                 [hasDeleteRolePermission]="hasDeleteRolePermission">
+    </role-single>
+  </div>
+
+</div>
+
+<div class="d-flex justify-content-center mt-5 mb-5"
+     *ngIf="isLoading">
+  <app-loading class="content-center mt-5 mb-5"></app-loading>
+</div>
