@@ -27,6 +27,16 @@
     "save": "Save",
     "cancel": "Cancel"
   },
+  "roles": {
+    "role": "Role",
+    "title": "Title",
+    "permission": "Permissions",
+    "save": "Save",
+    "cancel": "Cancel",
+    "ROLE_ALREADY_EXISTS": "Role Already Exists!",
+    "PERMISSIONS_NOT_ALLOWED": "Permissions Not Allowed",
+    "ROLE_HAS_USER": "Role Has User"
+  },
   "authErrors": {
     "USER_NOT_FOUND": "Email doesn't exists.",
     "INVALID_USERNAME": "Email is not valid.",
