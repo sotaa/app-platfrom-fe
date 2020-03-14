@@ -25,7 +25,6 @@ export class ListApplicationComponent implements OnInit {
 
   ngOnInit() {
     this.checkPermissions();
-
     this.getApplications();
   }
 
@@ -66,7 +65,7 @@ export class ListApplicationComponent implements OnInit {
       this.appService.getApplication(id).subscribe(res => {
         this.fetchedApp = res;
         this.editMode = true;
-        this.createAppFormUP();
+        this.openAppForm();
       },
         errorResponse => {
           // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
@@ -116,7 +115,7 @@ export class ListApplicationComponent implements OnInit {
         return this.hasDeleteAppPermission = hasPermission
       })
   }
-  createAppFormUP() {
+  openAppForm() {
     this.appFormUP = true;
   }
   closeAppForm() {
