@@ -11,7 +11,7 @@ import { ROLE_CREATE, ROLE_READ, ROLE_DELETE, ROLE_EDIT } from '../../dashboard/
 })
 export class ListComponent implements OnInit {
   roleFormUP: boolean = false;
-  hasCreatRolePermission: boolean = true;
+  hasCreatRolePermission: boolean;
   hasReadRolePermission: boolean;
   hasEditRolePermission: boolean;
   hasDeleteRolePermission: boolean;
@@ -29,8 +29,10 @@ export class ListComponent implements OnInit {
   }
 
   getRoles() {
+    this.isLoading = true;
     this.roleService.getRoles().subscribe(res => {
       this.roles = res;
+      this.isLoading = false;
     },
       errorResponse => {
         // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
