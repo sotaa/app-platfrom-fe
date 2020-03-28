@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IRole, Role } from '../models';
 import { RolesService } from '../roles.services';
@@ -17,6 +24,8 @@ export class AddModifyComponent implements OnInit {
   @Output() reFetchRoles = new EventEmitter<boolean>();
   @Input() fetchedRole: IRole;
   @Input() editMode: boolean;
+  @Input() hasCreatRolePermission: boolean;
+  @Input() hasEditRolePermission: boolean;
   title: string;
   permissions: string[];
   role: IRole;
@@ -39,7 +48,8 @@ export class AddModifyComponent implements OnInit {
     this.getUserPermissions();
     this.select2Options = {
       width: '100%',
-      multiple: true
+      multiple: true,
+      theme: "bootstrap"
     };
   }
 
@@ -47,10 +57,15 @@ export class AddModifyComponent implements OnInit {
     this.fillRoleDataForSendingToServer();
     if (this.form.valid) {
       this.isLoading = true;
-      let request = this.roleService.createRole(this.role);
+      let request;
+      if (this.hasCreatRolePermission) {
+        request = this.roleService.createRole(this.role);
+      }
       if (this.editMode) {
-        request = this.roleService
-          .editRole(this.role, this.fetchedRole.title);
+        if (this.hasEditRolePermission) {
+          request = this.roleService
+            .editRole(this.role, this.fetchedRole.title);
+        }
       }
       request.pipe(finalize(() => this.isLoading = false)).subscribe(res => {
         alert(`Role is ${this.editMode ? `updated` : `created`}`);
