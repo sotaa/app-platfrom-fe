@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { IAuthResult } from './models';
+import { IAuthResult, IAuthData } from './models';
 import { tap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { intersection } from 'lodash';
 import { Store } from '@ngrx/store';
 import { IAuthState } from './reducers/auth-state.interface';
 import { ChangeUser } from './reducers/actions';
+import { IUser } from '../user/models';
 
 @Injectable({
   providedIn: 'root'
@@ -38,13 +39,16 @@ export class AuthService {
    * @param username Username (email)
    * @param password Password
    */
-  register(username: string, password: string) {
+  register( authData: IAuthData) {
     return this.http
-      .post<IAuthResult>(environment.identityUrls.register, {
-        username,
-        password
-      })
+      .post<IAuthResult>(environment.identityUrls.register, authData)
       .pipe(tap(res => this.setAuthResult(res)));
+  }
+
+  registerByAdmin( authData: IAuthData) {
+    return this.http
+      .post<IAuthResult>(environment.identityUrls.register, authData)
+      .pipe(tap(res => res));
   }
 
   logout() {
@@ -101,6 +105,7 @@ export class AuthService {
        * و دسترسی های کاربر رو بدست میاریم اگر مشترکات با دسترسی های لازم برابر بود
        * پس کاربر همه دسترسی های لازم رو داره
        */
+      if(!authResult){return false}
       const userPermissions = authResult.user.role.permissions;
 
       if (requiredPermissions.length > userPermissions.length) return false;
