@@ -9,6 +9,7 @@ export const environment = {
   identityUrls: {
     login: IDENTITY_SERVER_URL.concat('/auth/login'),
     register: IDENTITY_SERVER_URL.concat('/auth/register'),
+    updateUser: IDENTITY_SERVER_URL.concat('/auth/update-user'),
     resetPassword: IDENTITY_SERVER_URL.concat('/auth/reset-password'),
 
     createApplication: IDENTITY_SERVER_URL.concat('/applications'),
@@ -27,6 +28,11 @@ export const environment = {
     readRoles: IDENTITY_SERVER_URL.concat('/roles'),
     readRole: IDENTITY_SERVER_URL.concat('/roles/'),
     deleteRole: IDENTITY_SERVER_URL.concat('/roles/'),
+
+    updateUserInfo: IDENTITY_SERVER_URL.concat('/users/'),
+    readUsers: IDENTITY_SERVER_URL.concat('/users'),
+    readUser: IDENTITY_SERVER_URL.concat('/users/'),
+    deleteUser: IDENTITY_SERVER_URL.concat('/users/'),
   },
   authenticationPageUrl: '/auth',
   permissionDeniedPageUrl: '/auth'
