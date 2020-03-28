@@ -15,7 +15,7 @@
 <div class="row"
      *ngIf="!isLoading">
   <div class="col-md-4"
-       *ngIf="hasCreatAppPermission">
+       *ngIf="hasCreatAppPermission || hasEditAppPermission">
     <div class="card">
       <i *ngIf="!appFormUP"
          class="material-icons"
@@ -26,6 +26,8 @@
       <app-add-or-update-application *ngIf="appFormUP"
                                      [fetchedApp]="fetchedApp"
                                      [editMode]="editMode"
+                                     [hasEditAppPermission]="hasEditAppPermission"
+                                     [hasCreatAppPermission]="hasCreatAppPermission"
                                      (closeAppForm)="closeAppForm()"
                                      (reFetchApplications)="reFetchApps()">
       </app-add-or-update-application>
