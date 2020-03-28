@@ -37,6 +37,22 @@
     "PERMISSIONS_NOT_ALLOWED": "Permissions Not Allowed",
     "ROLE_HAS_USER": "Role Has User"
   },
+  "users": {
+    "user": "User",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "gender": "Gender",
+    "mobile": "Mobile",
+    "role": "Role",
+    "isActive": "Active",
+    "save": "Save",
+    "cancel": "Cancel",
+    "editUserInfo": "Edit Personnal Info ",
+    "userInfo": "Personnal Info ",
+    "resetPassword": "Reset Password"
+  },
   "authErrors": {
     "USER_NOT_FOUND": "Email doesn't exists.",
     "INVALID_USERNAME": "Email is not valid.",
