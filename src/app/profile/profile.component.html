@@ -1,0 +1,32 @@
+<div class="container">
+  <div *ngIf="!isLoading"
+      class="container px-0">
+    <app-profile-info *ngIf="!editMode"
+                      [user]="user"></app-profile-info>
+    <div class="row px-3 justify-content-between">
+      <div *ngIf="!editMode"
+          class="col-4 px-0 py-0 ">
+        <button type="button"
+                (click)="openEditInfo()"
+                class="btn btn-info btn-sm btn-block my-0 mx-0 font-weight-bold">
+          {{"users.editUserInfo" | translate}}
+        </button>
+      </div>
+      <div *ngIf="!editMode"
+          class="col-4 px-0 py-0">
+        <button type="button"
+                class="btn btn-info btn-sm btn-block my-0 mx-0 font-weight-bold">
+          {{"users.resetPassword" | translate}}
+        </button>
+      </div>
+    </div>
+    <app-profile-info-edit *ngIf="editMode"
+                          [user]="user"
+                          (closeUserForm)="closeEditInfo()">
+    </app-profile-info-edit>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center mt-5">
+    <p><strong>User Personall Data Is Loading ...</strong></p>
+  </div>
+</div>
