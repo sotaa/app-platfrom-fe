@@ -29,6 +29,8 @@ export class AddOrUpdateApplicationComponent implements OnInit {
   application: IApplication;
   @Input() fetchedApp: IApplication;
   @Input() editMode: boolean;
+  @Input() hasEditAppPermission: boolean;
+  @Input() hasCreatAppPermission: boolean;
   errorMessage: string;
 
   constructor(private applicationService: ApplicationService) {
@@ -47,12 +49,18 @@ export class AddOrUpdateApplicationComponent implements OnInit {
     this.fillApplicationDataForSendingToServer();
     if (this.form.valid) {
       this.isLoading = true;
-      let request = this.applicationService
-        .createApplication(this.application);
+      let request;
+      if (this.hasCreatAppPermission) {
+        request = this.applicationService
+          .createApplication(this.application);
+      }
 
       if (this.editMode) {
-        request = this.applicationService
-          .editApplication(this.application, this.fetchedApp.id);
+        if (this.hasEditAppPermission) {
+          request = this.applicationService
+            .editApplication(this.application, this.fetchedApp.id);
+        }
+
       }
       request.pipe(finalize(() => this.isLoading = false)).subscribe(res => {
         alert(`Application is ${this.editMode ? `updated` : `created`}`);
