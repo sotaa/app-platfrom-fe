@@ -1,0 +1,155 @@
+<div class="d-flex justify-content-center">
+  <i id="modalUp"
+     data-toggle="modal"
+     data-target="#userModal"
+     style="border:none; background: none;">
+</i>
+  <!-- Modal -->
+  <div class="modal fade"
+       id="userModal"
+       tabindex="-1"
+       data-backdrop="static"
+       data-keyboard="false"
+       role="dialog"
+       aria-labelledby="exampleModalLongTitle"
+       aria-hidden="true">
+    <div class="modal-dialog"
+         role="document">
+      <div class="modal-content">
+        <div class="modal-body px-0 py-0">
+          <form (submit)="submit()"
+                #f="ngForm">
+            <div class="card my-0">
+              <div class="card-header"
+                   data-background-color="purple">
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                        (click)="emitCloseUserForm()">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="text-center font-weight-bold">{{'users.user' | translate}}</h4>
+
+              </div>
+              <div class="container-fluid">
+                <p *ngIf="errorMessage"
+                   class="text-danger text-center">{{ 'authErrors.' + errorMessage | translate}}</p>
+                <div class="form-group label-floating">
+                  <label class="control-label">{{'users.email' | translate}}</label>
+                  <input type="text"
+                         class="form-control"
+                         required
+                         [disabled]="editMode"
+                         name="email"
+                         [(ngModel)]="email">
+                </div>
+                <div class="form-group label-floating">
+                  <label class="control-label">{{'users.password' | translate}}</label>
+                  <input type="password"
+                         class="form-control"
+                         required
+                         [disabled]="editMode"
+                         name="password"
+                         [(ngModel)]="password">
+                </div>
+                <div class="form-group label-floating">
+                  <label class="control-label">{{'users.firstName' | translate}}</label>
+                  <input type="text"
+                         class="form-control"
+                         name="firstName"
+                         [(ngModel)]="firstName">
+                </div>
+                <div class="form-group label-floating">
+                  <label class="control-label">{{'users.lastName' | translate}}</label>
+                  <input type="text"
+                         class="form-control"
+                         name="lastName"
+                         [(ngModel)]="lastName">
+                </div>
+                <div class="form-group label-floating">
+                  <label class="control-label">{{'users.mobile' | translate}}</label>
+                  <input type="text"
+                         class="form-control"
+                         name="mobile"
+                         [(ngModel)]="mobile">
+                </div>
+                <div class="form-group label-floating">
+                  <label class=" control-label">{{'users.role' | translate}}</label>
+                  <ng-select2 class="form-control ngselect2 "
+                              style="font-weight: bold;color: rgb(94, 4, 4);"
+                              [data]="fetchedRoles"
+                              [options]="select2Options"
+                              name="role"
+                              [(ngModel)]="role">
+                  </ng-select2>
+                </div>
+                <div class="form-group label-floating pb-0"
+                     style="border-bottom:1px solid #ccc;">
+                  <label class="control-label">{{'users.gender' | translate}}</label>
+                  <br>
+                  <br>
+                  <div class="form-check form-check-radio form-check-inline pl-1">
+                    <label class="form-check-label">
+                      <input class="form-check-input"
+                             type="radio"
+                             name="gender"
+                             value="MALE"
+                             [(ngModel)]="gender"> male
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-check form-check-radio form-check-inline pl-1">
+                    <label class="form-check-label">
+                      <input class="form-check-input"
+                             type="radio"
+                             name="gender"
+                             value="FEMALE"
+                             [(ngModel)]="gender"> female
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-check ">
+                  <label class="control-label mr-5"
+                         style="float: left;">{{'users.isActive' | translate}}</label>
+                  <label class="form-check-label mt-1 ml-5"
+                         style="float: left;">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           name="isActive"
+                           [(ngModel)]="isActive"
+                           value="">
+                    <span class="form-check-sign ">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <br>
+              <br>
+              <br>
+              <div class="col-sm-12 text-center">
+                <button class="btn btn-info btn-sm mr-1"
+                        [disabled]="isLoading">
+                  {{isLoading ? '...' : 'users.save' | translate}}
+                </button>
+                <button class="btn btn-danger btn-sm"
+                        data-dismiss="modal"
+                        (click)="emitCloseUserForm()">
+                  {{'users.cancel' | translate}}
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
