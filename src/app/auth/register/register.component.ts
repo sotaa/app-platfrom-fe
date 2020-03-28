@@ -31,7 +31,10 @@ export class RegisterComponent {
     if (this.form.valid && !this.form.value.fullname) {
       this.isLoading = true;
       this.authService
-        .register(this.form.value.username, this.form.value.password)
+        .register({
+          username: this.form.value.username,
+          password: this.form.value.password
+        })
         .pipe(finalize(() => (this.isLoading = false)))
         .subscribe(
           res => {
