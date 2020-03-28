@@ -1,0 +1,36 @@
+<div class="card  px-2 pt-3 pb-4">
+  <h4 class="font-weight-bold d-flex justify-content-center mb-5">
+    <span class="material-icons">
+      account_circle
+    </span>{{"users.userInfo" | translate}}</h4>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card my-1 px-2 py-2"><label>Email : </label>
+        <h4 style="color:rgb(85, 2, 2)"
+            class="font-weight-bold ml-1">{{user.email}}</h4>
+      </div>
+      <div class="card my-1 px-2 py-2"><label>First Name : </label>
+        <h4 style="color:rgb(85, 2, 2)"
+            class="font-weight-bold ml-1">{{user.firstName ? user.firstName : '...'}}</h4>
+      </div>
+      <div class="card my-1 px-2 py-2"><label>Last Name : </label>
+        <h4 style="color:rgb(85, 2, 2)"
+            class="font-weight-bold ml-1">{{user.lastName ? user.lastName : '...'}}</h4>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card my-1 px-2 py-2"><label>Mobile : </label>
+        <h4 style="color:rgb(85, 2, 2)"
+            class="font-weight-bold ml-1">{{user.mobile ? user.mobile : '...'}}</h4>
+      </div>
+      <div class="card my-1 px-2 py-2"><label>Gender : </label>
+        <h4 style="color:rgb(85, 2, 2)"
+            class="font-weight-bold ml-1">{{user.gender ? user.gender : '...'}}</h4>
+      </div>
+      <div class="card my-1 px-2 py-2"><label>Expire Date : </label>
+        <h4 style="color:rgb(85, 2, 2)"
+            class="font-weight-bold ml-1">{{user.expireDate ? user.expireDate : '...'}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
