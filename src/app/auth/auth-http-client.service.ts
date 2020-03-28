@@ -1,17 +1,18 @@
+import { Subscription } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+
 })
 export class AuthHttpClient {
   private requestOptions: { headers?: { Authorization: string } };
-
   constructor(private http: HttpClient, private authService: AuthService) {
     this.requestOptions = {headers:{Authorization:''}};
-    this.authService.getCurrentUser().subscribe( authResult =>{
-      this.requestOptions.headers.Authorization = `Bearer ${ authResult.token }`;
+    this.authService.getCurrentUser().subscribe(authResult => {
+      this.requestOptions.headers.Authorization = authResult ? `Bearer ${ authResult.token }` : null;
     });
   }
 
