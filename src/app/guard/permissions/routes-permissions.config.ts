@@ -8,6 +8,9 @@ import {
   APPLICATION_EDIT,
   APPLICATION_DELETE,
   USER_CREATE,
+  USER_READ,
+  USER_DELETE,
+  USER_EDIT,
   ROLE_CREATE,
   ROLE_READ,
   ROLE_EDIT,
@@ -16,6 +19,8 @@ import {
 
 export const RoutePermissions: {path: string, claims: string[]}[] = [
   { path: 'payment-plans', claims: [PAYMENT_PLAN_READ] },
-  { path: 'payment-plans/create', claims: [PAYMENT_PLAN_CREATE] },
-  { path: 'payment-plans/edit',  claims: [PAYMENT_PLAN_EDIT] },
+  { path: 'roles', claims: [ROLE_READ] },
+  { path: 'users', claims: [USER_READ] },
+
+
 ];
