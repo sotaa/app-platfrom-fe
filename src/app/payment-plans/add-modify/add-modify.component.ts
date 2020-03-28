@@ -7,7 +7,7 @@ import {
   Input
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import  { IPaymentPlan,PaymentPlan } from '../models/payment-plan.interface';
+import { IPaymentPlan, PaymentPlan } from '../models/payment-plan.interface';
 import { PaymentPlansService } from '../payment-plans.service';
 import { finalize } from 'rxjs/operators';
 
@@ -17,11 +17,13 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./add-modify.component.scss']
 })
 export class AddModifyComponent implements OnInit {
-  @ViewChild( 'f' ) form: NgForm;
+  @ViewChild('f') form: NgForm;
   @Output() closePlanForm = new EventEmitter<boolean>();
   @Output() reFetchApplications = new EventEmitter<boolean>();
   @Input() fetchedPlan: IPaymentPlan;
   @Input() editMode: boolean;
+  @Input() hasCreatePlanPermission: boolean;
+  @Input() hasEditPlanPermission: boolean;
   name: string;
   price: number;
   dateRange: number;
@@ -30,53 +32,56 @@ export class AddModifyComponent implements OnInit {
   paymentPlan: IPaymentPlan;
   isLoading: boolean;
   errorMessage: string;
-  constructor(private paymentPlansService:PaymentPlansService){
+  constructor(private paymentPlansService: PaymentPlansService) {
     this.paymentPlan = new PaymentPlan();
   }
 
-  ngOnInit(){
-    if (  this.editMode  ){
+  ngOnInit() {
+    if (this.editMode) {
       this.name = this.fetchedPlan.name;
       this.price = this.fetchedPlan.price;
       this.dateRange = this.fetchedPlan.dateRange;
       this.isActive = this.fetchedPlan.isActive;
       this.description = this.fetchedPlan.description;
     }
-   }
+  }
 
-  submit(){
+  submit() {
     this.fillplanDataForSendingToServer();
-    if ( this.form.valid ){
+    if (this.form.valid) {
       this.isLoading = true;
-      console.log(this.paymentPlan)
-      let request = this.paymentPlansService.createPaymentPlan( this.paymentPlan );
-
-      if ( this.editMode ){
-        request = this.paymentPlansService
-          .editPaymentPlan( this.paymentPlan, this.fetchedPlan.id);
+      let request;
+      if (this.hasCreatePlanPermission) {
+        request = this.paymentPlansService.createPaymentPlan(this.paymentPlan);
       }
-        request.pipe( finalize( () => this.isLoading = false ) ).subscribe( res =>{
-            alert( `Payment Plan is ${this.editMode ? `updated`: `created`}`);
-            this.reFetchApplications.emit();
-          },
-          errorResponse => {
-            this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
-          }
-        );
-    } else{
+      if (this.editMode) {
+        if (this.hasEditPlanPermission) {
+          request = this.paymentPlansService
+            .editPaymentPlan(this.paymentPlan, this.fetchedPlan.id);
+        }
+      }
+      request.pipe(finalize(() => this.isLoading = false)).subscribe(res => {
+        alert(`Payment Plan is ${this.editMode ? `updated` : `created`}`);
+        this.reFetchApplications.emit();
+      },
+        errorResponse => {
+          this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
+        }
+      );
+    } else {
       this.errorMessage = 'VALIDATION_ERROR';
     }
   }
 
-  fillplanDataForSendingToServer(){
+  fillplanDataForSendingToServer() {
     this.paymentPlan.name = this.name;
     this.paymentPlan.price = this.price;
     this.paymentPlan.dateRange = this.dateRange;
-    this.isActive ? ( this.paymentPlan.isActive = true ) : ( this.paymentPlan.isActive = false );
+    this.isActive ? (this.paymentPlan.isActive = true) : (this.paymentPlan.isActive = false);
     this.paymentPlan.description = this.description;
   }
 
-  emitClosePlanForm(){
+  emitClosePlanForm() {
     this.closePlanForm.emit();
   }
 }
