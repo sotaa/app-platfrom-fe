@@ -8,7 +8,7 @@
     </div>
 
     <div class="row">
-      <div *ngIf="hasCreatePlanPermission"
+      <div *ngIf="hasCreatePlanPermission || hasEditPlanPermission"
            class="col-lg-3 col-md-6">
         <div class="card">
           <i *ngIf="!planFormUP"
@@ -20,6 +20,8 @@
           <plan-add-modify *ngIf="planFormUP"
                            [fetchedPlan]="fetchedPlan"
                            [editMode]="editMode"
+                           [hasCreatePlanPermission]="hasCreatePlanPermission"
+                           [hasEditPlanPermission]="hasEditPlanPermission"
                            (closePlanForm)="closePlanForm()"
                            (reFetchApplications)="reFetchApps()">
           </plan-add-modify>
