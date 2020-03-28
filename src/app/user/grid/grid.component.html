@@ -1,0 +1,71 @@
+<div>
+  <input type="text"
+         class="form-control mx-auto mt-3 mb-3"
+         style="padding:8px;width:30%;"
+         placeholder="Type to filter the name column..."
+         (keyup)="updateFilter($event)" />
+  <ngx-datatable #table
+                 class="material"
+                 [headerHeight]="50"
+                 [columnMode]="ColumnMode.force"
+                 [columns]="columns"
+                 [footerHeight]="50"
+                 [rowHeight]="'auto'"
+                 [limit]="10"
+                 [rows]="rows"
+                 [scrollbarH]="true"
+                 >
+
+    <ngx-datatable-column
+    [sortable]="true" name="Email" prop="email">
+      <ng-template let-row="row"
+                   ngx-datatable-cell-template>
+        {{row.email}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+    [sortable]="true" name="Name" prop="firstName">
+      <ng-template let-row="row"
+                   ngx-datatable-cell-template>
+        {{row.firstName}} {{row.lastName}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+    [sortable]="true" name="Gender" prop="gender">
+      <ng-template let-row="row"
+                   ngx-datatable-cell-template>
+        {{row.gender}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+    [sortable]="true" name="Role" prop="role.title">
+      <ng-template let-row="row"
+                   ngx-datatable-cell-template>
+        {{row.role.title}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column
+    [sortable]="true" name="Expire Date" prop="expireDate">
+      <ng-template let-row="row"
+                   ngx-datatable-cell-template>
+        {{row.expireDate}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngIf="hasEditUserPermission">
+      <ng-template let-row="row"
+                   ngx-datatable-cell-template>
+        <button mat-raised-button
+                class="btn btn-link btn-info pl-0"
+                (click)="emitEditUser(row.id)">
+          <i class="material-icons mb-2">edit</i>
+        </button>
+        <button mat-raised-button
+                class="btn btn-link btn-primary pl-0"
+                (click)="emitUserInfo(row.id)">
+          <i class="material-icons mb-2">info</i>
+        </button>
+      </ng-template>
+
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
