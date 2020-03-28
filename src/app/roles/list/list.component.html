@@ -2,7 +2,7 @@
      *ngIf="!isLoading">
 
   <div class="col-md-4"
-       *ngIf="hasCreatRolePermission">
+       *ngIf="hasCreatRolePermission || hasEditRolePermission">
     <div class="card">
       <i *ngIf="!roleFormUP"
          class="material-icons"
@@ -13,6 +13,8 @@
       <app-add-modify *ngIf="roleFormUP"
                       [fetchedRole]="fetchedRole"
                       [editMode]="editMode"
+                      [hasCreatRolePermission]="hasCreatRolePermission"
+                      [hasEditRolePermission]="hasEditRolePermission"
                       (closeRoleForm)="closeRoleForm()"
                       (reFetchRoles)="reFetchRoles()">
       </app-add-modify>
