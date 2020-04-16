@@ -9,6 +9,7 @@ export const environment = {
   identityUrls: {
     login: IDENTITY_SERVER_URL.concat('/auth/login'),
     register: IDENTITY_SERVER_URL.concat('/auth/register'),
+    refreshToken: IDENTITY_SERVER_URL.concat('/auth/token/'),
     resetPassword: IDENTITY_SERVER_URL.concat('/auth/reset-password'),
 
     createApplication: IDENTITY_SERVER_URL.concat('/applications'),
