@@ -4,6 +4,8 @@ import { IApplication } from '../models';
 import { ApplicationService } from '../application.service';
 import { APPLICATION_CREATE, APPLICATION_EDIT, APPLICATION_READ, APPLICATION_DELETE } from '../../permissions.const';
 import { AuthService } from 'src/app/auth/auth.service';
+import * as queryString from "query-string";
+
 
 @Component({
   selector: 'app-list-application',
@@ -21,6 +23,7 @@ export class ListApplicationComponent implements OnInit {
   fetchedApp: IApplication;
   editMode: boolean = false;
   isLoading: boolean;
+  user = { token: '' };
   constructor(private appService: ApplicationService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -38,10 +41,12 @@ export class ListApplicationComponent implements OnInit {
         // this.errorMessage = errorResponse.error.message || 'UNKNOWN_ERROR';
       });
   }
+
   reFetchApps() {
     this.getApplications();
     this.closeAppForm();
   }
+
   deleteApp(id) {
     this.checkDeleteAppPermision();
     if (this.hasDeleteAppPermission) {
@@ -58,6 +63,7 @@ export class ListApplicationComponent implements OnInit {
     }
 
   }
+
   fetchAppForEditApp(id) {
     this.checkEditAppPermision();
     if (this.hasEditAppPermission) {
@@ -74,6 +80,18 @@ export class ListApplicationComponent implements OnInit {
       alert("You don't have EDIT Permission");
     }
 
+  }
+
+  async goToSelectedApp(url) {
+    await this.getCurrentUserToken();
+    const stringifiedUrl = queryString.stringifyUrl({ url: url, query: this.user });
+    stringifiedUrl ? window.open(stringifiedUrl, '_blank') : null;
+  }
+
+  getCurrentUserToken() {
+    this.authService.getCurrentUser().subscribe(res => {
+      this.user.token = res.token;
+    })
   }
 
   // check if user have required permission

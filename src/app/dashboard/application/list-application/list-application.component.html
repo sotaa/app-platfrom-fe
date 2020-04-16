@@ -39,9 +39,8 @@
     <div class="card">
       <div class="card-body mb-4">
         <a class="text-center"
-           style="color:inherit"
-           [href]=" hasReadAppPermission ? app.url : ''"
-           target="_blank">
+           style="color:inherit; cursor: pointer;"
+           (click)="hasReadAppPermission ? goToSelectedApp(app.url) : null">
           <div class="stats title font-weight-bold"
                style="font-size: calc(1em + 0.6vw)">
             <b>{{app.name}}</b>
